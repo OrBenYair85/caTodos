@@ -14,6 +14,7 @@ export function TodoIndex() {
 
     // const [todos, setTodos] = useState(null)
     const todos = useSelector(StoreState => StoreState.todoModule.todos)
+    const isLoading = useSelector(StoreState => StoreState.todoModule.isLoading)
 
     // Special hook for accessing search-params:
     const [searchParams, setSearchParams] = useSearchParams()
@@ -55,7 +56,7 @@ export function TodoIndex() {
             })
     }
 
-    if (!todos) return <div>Loading...</div>
+    
     return (
         <section className="todo-index">
             <TodoFilter filterBy={filterBy} onSetFilterBy={setFilterBy} />
@@ -63,7 +64,9 @@ export function TodoIndex() {
                 <Link to="/todo/edit" className="btn" >Add Todo</Link>
             </div>
             <h2>Todos List</h2>
+            {!isLoading ? 
             <TodoList todos={todos} onRemoveTodo={onRemoveTodo} onToggleTodo={onToggleTodo} />
+            : <div>Loading...</div>}
             <hr />
             <h2>Todos Table</h2>
             <div style={{ width: '60%', margin: 'auto' }}>

@@ -4,9 +4,11 @@ export const SET_TODOS = 'SET_TODOS'
 export const ADD_TODO = 'ADD_TODOS'
 export const REMOVE_TODO = 'REMOVE_TODOS' 
 export const UPDATE_TODO = 'UPDATE_TODO'
+export const SET_IS_LOADING = 'SET_IS_LOADING'
 
 const initialState = {
-    todos: []
+    todos: [],
+    isLoading: false
 }
 
 
@@ -31,6 +33,11 @@ export function todoReducer(state = initialState, cmd = {}) {
             return {
                 ...state,
                 todos: state.todos.map(todo => todo._id === cmd.todo._id ? cmd.todo : todo)
+            }
+        case SET_IS_LOADING:
+            return {
+                ...state,
+                isLoading: cmd.isLoading
             }
         default:
             return state

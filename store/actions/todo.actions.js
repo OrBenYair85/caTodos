@@ -1,8 +1,9 @@
 import { todoService } from "../../services/todo.service.js"
-import { ADD_TODO, REMOVE_TODO, SET_TODOS, UPDATE_TODO } from "../reducers/todo.reducer.js"
+import { ADD_TODO, REMOVE_TODO, SET_TODOS, UPDATE_TODO, SET_IS_LOADING } from "../reducers/todo.reducer.js"
 import { store } from "../store.js"
 
 export function loadTodos() {
+    store.dispatch({type: SET_IS_LOADING, isLoading: true})
     return todoService.query()
         .then(todos => {
             store.dispatch({type: SET_TODOS, todos})
@@ -11,6 +12,9 @@ export function loadTodos() {
         .catch(err => {
             console.log('todo action -> Cannot load todos', err);
             throw err
+        })
+        .finally(() => {
+            store.dispatch({type: SET_IS_LOADING, isLoading: false})
         })
 }
 
