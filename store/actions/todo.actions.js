@@ -18,7 +18,7 @@ export function removeTodo(todoId){
 
     return todoService.remove(todoId)
         .then(() => {
-            store.dispatch({ type:REMOVE_TODO, todoId})
+            store.dispatch({ type: REMOVE_TODO, todoId})
         })
         .catch(rtt => {
             console.log('todo action -> Cannot remove todo', err);
