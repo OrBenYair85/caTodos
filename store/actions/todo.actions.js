@@ -3,8 +3,9 @@ import { ADD_TODO, REMOVE_TODO, SET_TODOS, UPDATE_TODO, SET_IS_LOADING } from ".
 import { store } from "../store.js"
 
 export function loadTodos() {
+    const filterBy = store.getState().todoModule.filterBy
     store.dispatch({type: SET_IS_LOADING, isLoading: true})
-    return todoService.query()
+    return todoService.query(filterBy)
         .then(todos => {
             store.dispatch({type: SET_TODOS, todos})
             
