@@ -7,6 +7,7 @@ const { useNavigate, useParams } = ReactRouterDOM
 
 export function TodoEdit() {
 
+
     const [todoToEdit, setTodoToEdit] = useState(todoService.getEmptyTodo())
     const navigate = useNavigate()
     const params = useParams()
@@ -55,7 +56,9 @@ export function TodoEdit() {
             })
     }
 
-    const { txt, importance, isDone } = todoToEdit
+    const { txt, importance, isDone, color } = todoToEdit
+
+    
 
     return (
         <section className="todo-edit">
@@ -65,6 +68,9 @@ export function TodoEdit() {
 
                 <label htmlFor="importance">Importance:</label>
                 <input onChange={handleChange} value={importance} type="number" name="importance" id="importance" />
+
+                <label htmlFor="color">Color:</label>
+                <input onChange={handleChange} value={color} type="color" name="color" id="color" />
 
                 <label htmlFor="isDone">isDone:</label>
                 <input onChange={handleChange} value={isDone} type="checkbox" name="isDone" id="isDone" />

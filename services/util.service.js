@@ -4,7 +4,8 @@ export const utilService = {
     getRandomIntInclusive,
     loadFromStorage,
     saveToStorage,
-    animateCSS
+    animateCSS,
+    makeColor
 }
 
 function makeId(length = 6) {
@@ -57,4 +58,8 @@ function animateCSS(el, animation='bounce') {
 
         el.addEventListener('animationend', handleAnimationEnd, { once: true })
     })
+}
+
+function makeColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
