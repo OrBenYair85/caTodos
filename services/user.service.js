@@ -2,7 +2,7 @@ import { storageService } from "./async-storage.service.js"
 
 
 export const userService = {
-    getLoggedinUser,
+    getLoggedInUser,
     login,
     logout,
     signup,
@@ -43,7 +43,7 @@ function logout() {
     return Promise.resolve()
 }
 
-function getLoggedinUser() {
+function getLoggedInUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
 }
 
